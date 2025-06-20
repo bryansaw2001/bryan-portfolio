@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Designer Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font import - Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6f8fa; /* Light grey background similar to Notion */
+            color: #37352f; /* Dark text for readability */
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f6f8fa;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Base styles for sections - no absolute positioning for single page */
+        .page-section {
+            padding: 1.5rem; /* Base padding for all sections */
+            margin-bottom: 2rem; /* Space between sections */
+        }
+
+        /* Style for active navigation link */
+        .nav-link.active {
+            color: #4f46e5; /* Indigo-600 */
+            font-weight: 600; /* Semi-bold */
+            position: relative;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px; /* Adjust as needed */
+            width: 100%;
+            height: 2px;
+            background-color: #4f46e5; /* Indigo-600 */
+            border-radius: 9999px; /* Fully rounded */
+        }
+
+        /* Animation classes for hero section elements (excluding h1 for typewriter) */
+        .hero-fade-in-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .hero-fade-in-item.is-animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typewriter cursor animation */
+        .typewriter-cursor {
+            display: inline-block;
+            background-color: #1a202c; /* Dark color for cursor */
+            width: 3px;
+            height: 1.2em; /* Adjust based on font size */
+            animation: blink-caret 0.75s step-end infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.2s;
+        }
+
+        .typewriter-cursor.is-animated {
+            opacity: 1;
+        }
+
+        @keyframes blink-caret {
+            from, to { background-color: transparent }
+            50% { background-color: #1a202c; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm py-4 px-6 md:px-8 lg:px-12 rounded-b-xl relative z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo/Site Title -->
+            <a href="#hero" class="flex items-center nav-link">
+                <!-- Icon removed as per your request -->
+                <span class="text-xl font-bold text-gray-800">BRYAN SAW</span>
+                <div class="hidden sm:flex items-center ml-4 space-x-2">
+                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+                        UI/UX DESIGNER
+                    </span>
+                    <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">
+                        PRODUCT DESIGNER
+                    </span>
+                </div>
+            </a>
+
+            <!-- Navigation (Hidden on small screens, shown as menu icon) -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-200 ease-in-out nav-link" data-section="about">About</a>
+                <a href="#experience" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-200 ease-in-out nav-link" data-section="experience">Experience</a>
+                <a href="#portfolio" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-200 ease-in-out nav-link" data-section="portfolio">Portfolio</a>
+                <a href="#services" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-200 ease-in-out nav-link" data-section="services">Skills</a>
+                <a href="#contact-details" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-200 ease-in-out nav-link" data-section="contact-details">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="md:hidden mt-4 hidden" id="mobile-menu">
+            <nav class="flex flex-col space-y-2">
+                <a href="#about" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg transition duration-200 ease-in-out nav-link" data-section="about">About</a>
+                <a href="#experience" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg transition duration-200 ease-in-out nav-link" data-section="experience">Experience</a>
+                <a href="#portfolio" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg transition duration-200 ease-in-out nav-link" data-section="portfolio">Portfolio</a>
+                <a href="#services" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg transition duration-200 ease-in-out nav-link" data-section="services">Services</a>
+                <a href="#contact-details" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg transition duration-200 ease-in-out nav-link" data-section="contact-details">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area - Single Page Layout -->
+    <main class="max-w-4xl mx-auto p-4 md:p-6 lg:p-8 my-8 bg-white rounded-xl shadow-lg">
+
+        <!-- Hero Section -->
+        <section id="hero" class="page-section notion-block text-center">
+            <h1 id="hero-headline" class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                <!-- Text will be typed out by JS -->
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-6 hero-fade-in-item">
+                I create user-centric products that are not just beautiful, but also highly functional,minimalistic and delightful to use.
+            </p>
+            <a href="#portfolio" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform hover:scale-105 nav-link hero-fade-in-item" data-section="portfolio">
+                View My Work
+                <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 -mr-1 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="page-section notion-block p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4">👋 About Me</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Hi! I’m Bryan Saw, a 24-year-old UI/UX designer with a background in Computer Science, recently graduated with Second Class Honours from Taylor’s University. Prior to focusing on design, I worked as a Product Manager, where I led cross-functional teams and collaborated closely with developers and stakeholders to bring digital products to life.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        My journey into UI/UX began with a fascination for how people interact with technology, evolving into a deep passion for crafting intuitive and impactful user experiences. I believe that great design blends aesthetics, empathy, and innovation whilst transforming complex problems into elegant solutions that create real value for both users and businesses.
+                    </p>
+                </div>
+                <div class="flex justify-center md:justify-end">
+                    <!-- Updated image source to your file -->
+                    <img src="IMG_4404.JPG" alt="Your professional photo" class="rounded-full shadow-lg border-4 border-indigo-200 w-48 h-48 object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Logos Section -->
+        <section id="experience" class="page-section notion-block p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">🤝 Past Experience</h2>
+            <div class="flex flex-wrap justify-center items-center gap-8 py-4">
+                <!-- Logo 1: Decube Data Sdn Bhd -->
+                <div class="flex flex-col items-center group text-center">
+                    <img src="image-removebg-preview.png" alt="Decube Data Sdn Bhd Logo" class="h-40 w-40 object-contain grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105 rounded-lg">
+                    <div class="mt-2 text-sm text-gray-600 font-medium opacity-100 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="font-semibold text-gray-800">Decube Data Sdn Bhd</p>
+                        <p>July 2024 - July 2024</p>
+                    </div>
+                </div>
+                <!-- Logo 2: Costco Westgate New Zealand -->
+                <div class="flex flex-col items-center group text-center">
+                    <img src="image-removebg-preview copy.png" alt="Costco Westgate New Zealand Logo" class="h-40 w-40 object-contain grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105 rounded-lg">
+                    <div class="mt-2 text-sm text-gray-600 font-medium opacity-100 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="font-semibold text-gray-800">Costco Westgate New Zealand</p>
+                        <p>August 2024 - January 2025</p>
+                    </div>
+                </div>
+                <!-- Logo 3: Hiredly X | AI powered Headhunting -->
+                <div class="flex flex-col items-center group text-center">
+                    <img src="hiredlyx.png" alt="Hiredly X Logo" class="h-40 w-40 object-contain grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105 rounded-lg">
+                    <div class="mt-2 text-sm text-gray-600 font-medium opacity-100 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="font-semibold text-gray-800">Hiredly X | AI powered Headhunting</p>
+                        <p>May 2025 - Present</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="page-section notion-block p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">✨ My Portfolio</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Portfolio Item 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="Screenshot 2025-06-20 at 3.35.16 PM.png" alt="Project 1" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Decube-Data Observability Product Design</h3>
+                        <p class="text-gray-600 text-sm mb-3">Led a full redesign of Decube's data observability platform, streamlining user navigation and optimizing the onboarding and workflow experience for improved usability and efficiency.</p>
+                        <a href="#case-study-detail" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm view-case-study-link" data-project-id="ecommerce-redesign" data-project-title="E-commerce Redesign Case Study" data-figma-url="https://embed.figma.com/design/msQKt0Pe33tP4GaYKL10hS/BRYAN-SAW-PORTFOLIO?node-id=611-3507&embed-host=share">View Case Study &rarr;</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="Screenshot 2025-06-20 at 3.35.42 PM.png" alt="Project 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">HIREDLY X-Recruiter Dashboard</h3>
+                        <p class="text-gray-600 text-sm mb-3">Designed and developed an end-to-end recruiter dashboard,an applicant tracking system—starting from wireframes to high-fidelity prototypes, focused on streamlining the hiring workflow and enhancing recruiter efficiency.</p>
+                        <a href="#case-study-detail" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm view-case-study-link" data-project-id="mobile-app-concept" data-project-title="Mobile App Concept Case Study" data-figma-url="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FK5yX9d9Y2n7L0t1fE8e2b8%2FExample-Mobile-App-Project%3Fnode-id%3D0%253A1">View Case Study &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Detail Section -->
+        <section id="case-study-detail" class="page-section notion-block p-6 bg-gray-50 rounded-lg shadow-sm hidden">
+            <button id="back-to-portfolio-button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-indigo-600 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Back to Portfolio
+            </button>
+            <h2 id="case-study-title" class="text-3xl font-semibold text-gray-800 mb-4"></h2>
+            <p id="case-study-description" class="text-gray-700 leading-relaxed mb-6"></p>
+
+            <div class="mt-8">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Figma Design Embed</h3>
+                <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-md">
+                    <iframe id="figma-embed" class="absolute top-0 left-0 w-full h-full" style="border: 1px solid rgba(0, 0, 0, 0.1);" src="" allowfullscreen></iframe>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="page-section notion-block p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">💡 My Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Service Card 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5.52 19c-.387-.73-.523-1.57-.42-2.457.17-1.425 1.054-2.73 2.45-3.693 1.396-.963 3.01-1.425 4.75-1.425s3.354.462 4.75 1.425c1.396.963 2.28 2.268 2.45 3.693.103.887-.033 1.727-.42 2.457M12 16.5c-2.76 0-5 2.24-5 5v.5h10v-.5c0-2.76-2.24-5-5-5zM12 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-800">UX Research & Strategy</h3>
+                    </div>
+                    <p class="text-gray-600">User interviews, usability testing, persona development, journey mapping, competitive analysis.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-800">UI Design & Prototyping</h3>
+                    </div>
+                    <p class="text-gray-600">Wireframing, mockups, high-fidelity designs, interactive prototypes, design system creation.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-800">Usability Testing</h3>
+                    </div>
+                    <p class="text-gray-600">Planning and conducting usability tests, analyzing results, and providing actionable insights for improvement.</p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-800">Responsive Design</h3>
+                    </div>
+                    <p class="text-gray-600">Ensuring designs adapt seamlessly across various devices and screen sizes (desktop, tablet, mobile).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-details" class="page-section notion-block p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">📞 Contact Details</h2>
+            <div class="space-y-4">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <p class="text-gray-700"><a href="tel:+60128894183" class="hover:underline">+60 12 889 4183</a></p>
+                </div>
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <p class="text-gray-700"><a href="mailto:bryansaw.taylors@gmail.com" class="hover:underline">bryansaw.taylors@gmail.com</a></p>
+                </div>
+
+                <h3 class="text-xl font-semibold text-gray-800 pt-4 mb-3">Connect With Me</h3>
+                <div class="flex space-x-4">
+                    <!-- LinkedIn Button -->
+                    <a href="https://www.linkedin.com/in/bryansawhowmeng/" target="_blank" rel="noopener noreferrer" class="flex items-center px-4 py-2 bg-blue-700 text-white rounded-full shadow-md hover:bg-blue-800 transition duration-200 transform hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <!-- Facebook Button -->
+                    <a href="https://www.facebook.com/lilchiga/" target="_blank" rel="noopener noreferrer" class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 transition duration-200 transform hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.644 9.182 8.432 9.873V14.85h-2.91v-2.923h2.91V9.704c0-2.884 1.76-4.467 4.336-4.467 1.236 0 2.302.09 2.61.134v2.54h-1.503c-1.487 0-1.776.708-1.776 1.745v2.296h3.19l-.517 2.923h-2.673v6.123C18.356 21.182 22 16.991 22 12c0-5.523-4.477-10-10-10z"/>
+                        </svg>
+                        Facebook
+                    </a>
+                    <!-- Instagram Button -->
+                    <a href="https://www.instagram.com/bryansaw_/" target="_blank" rel="noopener noreferrer" class="flex items-center px-4 py-2 bg-pink-600 text-white rounded-full shadow-md hover:bg-pink-700 transition duration-200 transform hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.071 1.17.057 1.744.249 2.128.393.384.144.667.319.907.56.24.24.416.523.56.907.145.384.337.958.394 2.128.06 1.266.072 1.646.072 4.85s-.012 3.584-.071 4.85c-.057 1.17-.249 1.744-.393 2.128-.144.384-.319.667-.56.907-.24.24-.523.416-.907.56-.384.145-.958.337-2.128.394-1.266.06-1.646.072-4.85.072s-3.584-.012-4.85-.071c-1.17-.057-1.744-.249-2.128-.393-.384-.144-.667-.319-.907-.56-.24-.24-.416-.523-.56-.907-.145-.384-.337-.958-.394-2.128-.06-1.266-.072-1.646-.072-4.85zM12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-10a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm-6.5-3c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5z"/>
+                        </svg>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-100 py-6 px-4 md:px-6 lg:px-8 mt-8 rounded-t-xl text-center text-gray-600 text-sm">
+        <p>&copy; 2025 Bryan Saw How Meng. All rights reserved. Designed with love.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- Active Navigation Link Highlighting (Scroll-based) ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.page-section');
+        const headerHeight = document.querySelector('header').offsetHeight; // Get header height for offset
+
+        function updateActiveNavLink(id) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Check both data-section and href for highlighting
+                if (link.getAttribute('data-section') === id || (link.getAttribute('href') && link.getAttribute('href').substring(1) === id)) {
+                    link.classList.add('active');
+                }
+            });
+            // Handle logo link separately if it points to hero
+            const logoLink = document.querySelector('header .nav-link[href="#hero"]');
+            if (id === 'hero') {
+                logoLink.classList.add('active');
+            } else {
+                logoLink.classList.remove('active');
+            }
+        }
+
+        // Intersection Observer for highlighting navigation links
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: `-${headerHeight + 10}px 0px -50% 0px`, // Adjust top margin to trigger before section reaches top
+            threshold: 0 // Trigger as soon as 1 pixel enters viewport
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Only activate if the section is truly the "topmost" one visible
+                    const rect = entry.target.getBoundingClientRect();
+                    if (rect.top <= headerHeight + 10 && rect.bottom > headerHeight + 10) {
+                        updateActiveNavLink(entry.target.id);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe each section
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Handle clicks on nav links to smooth scroll
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - headerHeight - 10, // Scroll to section minus header height and a bit more
+                        behavior: 'smooth'
+                    });
+                    updateActiveNavLink(targetId); // Immediately highlight on click
+                }
+            });
+        });
+
+        // --- Hero Section Typewriter Animation Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroHeadlineElement = document.getElementById('hero-headline');
+            const headlineText = "Turning Business Ideas into Reality"; // Store the full text
+            let charIndex = 0;
+            const typingSpeed = 50; // Milliseconds per character
+
+            const heroParagraph = document.querySelector('#hero p.hero-fade-in-item');
+            const heroButton = document.querySelector('#hero a.hero-fade-in-item');
+
+            function typeWriter() {
+                // Add cursor initially
+                heroHeadlineElement.innerHTML = '<span class="typewriter-cursor is-animated"></span>';
+                const cursor = heroHeadlineElement.querySelector('.typewriter-cursor');
+
+                function typeChar() {
+                    if (charIndex < headlineText.length) {
+                        heroHeadlineElement.textContent = headlineText.substring(0, charIndex + 1);
+                        // Re-append cursor after adding text
+                        heroHeadlineElement.appendChild(cursor);
+                        charIndex++;
+                        setTimeout(typeChar, typingSpeed);
+                    } else {
+                        // Typing complete, remove cursor animation and trigger next elements
+                        cursor.classList.remove('is-animated');
+                        setTimeout(() => {
+                            heroParagraph.classList.add('is-animated');
+                        }, 200); // Delay for paragraph after headline is done
+                        setTimeout(() => {
+                            heroButton.classList.add('is-animated');
+                        }, 400); // Delay for button after headline is done
+                    }
+                }
+                typeChar(); // Start typing
+            }
+
+            typeWriter(); // Initiate the typewriter effect on page load
+
+            // Initial highlight on load for the first section (already there)
+            updateActiveNavLink('hero');
+        });
+
+        // --- Case Study Detail Logic (remains unchanged) ---
+        const viewCaseStudyLinks = document.querySelectorAll('.view-case-study-link');
+        const caseStudyDetailSection = document.getElementById('case-study-detail');
+        const caseStudyTitle = document.getElementById('case-study-title');
+        const caseStudyDescription = document.getElementById('case-study-description');
+        const figmaEmbed = document.getElementById('figma-embed');
+        const backToPortfolioButton = document.getElementById('back-to-portfolio-button');
+
+        // Sample project data (you can expand this with more details per project)
+        const projectData = {
+            'ecommerce-redesign': {
+                title: 'Decube Data Observability Product: Enhanced User Interphase',
+                description: 'This project focused on enhancing the overall design of Decube’s data observability platform through a clean, minimalist approach. The goal was to improve clarity and usability by reducing visual clutter and creating a more intuitive user experience. Key activities included UI refinement, wireframing, and iterative design testing.',
+                figmaUrl: 'https://embed.figma.com/design/msQKt0Pe33tP4GaYKL10hS/BRYAN-SAW-PORTFOLIO?node-id=522-1212&embed-host=share' // REPLACE with your actual Figma URL
+            },
+            'mobile-app-concept': {
+                title: 'HiredlyX: Recruiter Dashboard',
+                description: 'designed and refined the Recruiter Dashboard, an internal Applicant Tracking System (ATS) built to support recruiters in managing candidates more efficiently. The project focused on improving the user interface and enhancing key product features to create a more intuitive and streamlined experience. This involved deep user understanding, UI/UX sketching, and the development of high-fidelity prototypes to align with recruiter workflows.',
+                figmaUrl: 'https://embed.figma.com/design/ZGfzyl9gMscmrAoWCFKbCy/Masterfile-%7C-RD?node-id=5754-369&embed-host=share' // REPLACE with your actual Figma URL
+            }
+        };
+
+        viewCaseStudyLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project-id');
+                const project = projectData[projectId];
+
+                if (project) {
+                    caseStudyTitle.textContent = project.title;
+                    caseStudyDescription.textContent = project.description;
+                    figmaEmbed.src = project.figmaUrl;
+
+                    caseStudyDetailSection.classList.remove('hidden'); // Show the section
+                    window.scrollTo({
+                        top: caseStudyDetailSection.offsetTop - headerHeight - 10,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        backToPortfolioButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: document.getElementById('portfolio').offsetTop - headerHeight - 10,
+                behavior: 'smooth'
+            });
+            // Give a small delay before hiding to allow smooth scroll to start
+            setTimeout(() => {
+                caseStudyDetailSection.classList.add('hidden'); // Hide the section
+                figmaEmbed.src = ""; // Clear Figma embed to stop potential background playback/loading
+            }, 500); // Match scroll behavior duration
+        });
+    </script>
+</body>
+</html>
